@@ -6,6 +6,7 @@ RUN mkdir -p /var/lock
 RUN opkg remove dnsmasq && \
     opkg update && \
     opkg install luci \
+      hostapd-openssl \
       ip-full \
       iperf3 \
       dnsmasq-full \
