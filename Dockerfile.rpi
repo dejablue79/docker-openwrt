@@ -3,7 +3,7 @@ COPY . .
 ARG ROOT_PW
 RUN echo -e "${ROOT_PW}\n${ROOT_PW}" | passwd
 RUN mkdir -p /var/lock
-RUN opkg remove dnsmasq && \
+RUN opkg remove dnsmasq hostapd wpad-basic && \
     opkg update && \
     opkg install luci \
       hostapd-openssl \
@@ -24,6 +24,5 @@ RUN opkg remove dnsmasq && \
       acme \
       luci-app-acme \
       acme-dnsapi
-RUN opkg list-upgradable | awk '{print $1}' | xargs opkg upgrade
 
 CMD [ "/sbin/init" ]
