@@ -3,10 +3,27 @@ COPY . .
 ARG ROOT_PW
 RUN echo -e "${ROOT_PW}\n${ROOT_PW}" | passwd
 RUN mkdir -p /var/lock
-RUN opkg update && \
-    opkg install \
+RUN opkg remove dnsmasq && \
+    opkg update && \
+    opkg install luci \
+      iw-full \
+      ip-full \
       iperf3 \
-      ip-full && \
-    opkg list-upgradable | awk '{print $1}' | xargs opkg upgrade
+      dnsmasq-full \
+      iptables-mod-checksum \
+      nano \
+      luci \
+      ipset \
+      luci-app-openvpn \
+      openvpn-openssl \
+      adblock \
+      libustream-openssl \
+      luci-app-adblock \
+      dnscrypt-proxy2 \
+      luci-app-vpn-policy-routing \
+      acme \
+      luci-app-acme \
+      acme-dnsapi
+RUN opkg list-upgradable | awk '{print $1}' | xargs opkg upgrade
 
 CMD [ "/sbin/init" ]
