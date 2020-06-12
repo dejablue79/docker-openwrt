@@ -1,8 +1,8 @@
 ### Sample OpenWRT config file ###
 
 ## general
-# source image for Raspberry Pi build target
-SOURCE_IMG=openwrt-19.07.2-brcm2708-bcm2708-rpi-ext4-factory.img
+# source image for Raspberry Pi4 build target
+SOURCE_IMG=openwrt-bcm27xx-bcm2711-rpi-4-ext4-factory.img.gz
 # source tag for build (x86) target
 OPENWRT_TAG=x86-64-19.07.2
 # final tag for built Docker image
@@ -16,13 +16,13 @@ ROOT_PW=changeme123
 WAN_NAME=openwrt-wan
 # host interface which will provide the WAN link for OpenWRT
 WAN_PARENT=eth0
-UPSTREAM_DNS_SERVER=8.8.8.8
+UPSTREAM_DNS_SERVER=1.1.1.1
 
 # Static IP address configuration for OpenWRT LAN
 LAN_NAME=openwrt-lan
 LAN_DOMAIN=home
 LAN_SUBNET=192.168.16.0/24
-LAN6_SUBNET=fd99:1234::/48
+
 # Set LAN_ADDR to something other than the first available address
 # in the subnet - Docker will claim this address for the host
 LAN_ADDR=192.168.16.2
@@ -30,7 +30,7 @@ LAN_ADDR=192.168.16.2
 LAN_NETMASK=255.255.255.0
 
 # wifi settings
-WIFI_IFACE=wlp2s0
+WIFI_IFACE=wlan0
 WIFI_SSID=test123
 WIFI_ENCRYPTION=psk2
 WIFI_KEY=12345678
